@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fbfaf7">
     <title>MONTEME Beauty Atelier & Shop</title>
     <meta
       name="description"
@@ -400,18 +401,20 @@
           <span>Selected care</span>
           <strong>Корзина</strong>
         </div>
-        <button class="icon-button" id="closeCart" type="button" aria-label="Закрыть корзину">
-          <i data-lucide="x"></i>
-        </button>
+        <div class="cart-head-actions">
+          <div class="cart-total">
+            <span>Total</span>
+            <strong id="cartTotal">€0</strong>
+          </div>
+          <button class="icon-button" id="closeCart" type="button" aria-label="Закрыть корзину">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
       </div>
       <div class="cart-items" id="cartItems"></div>
       <div class="cart-empty" id="cartEmpty">
         <i data-lucide="shopping-bag"></i>
         <p>Добавьте уход из магазина.</p>
-      </div>
-      <div class="cart-total">
-        <span>Total</span>
-        <strong id="cartTotal">€0</strong>
       </div>
       <a class="button button-dark full" href="#checkout" id="cartCheckout">
         <i data-lucide="credit-card"></i>

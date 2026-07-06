@@ -78,17 +78,18 @@ button {
   gap: 24px;
   min-height: 76px;
   padding: 16px clamp(18px, 4vw, 56px);
-  color: var(--white);
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(251, 250, 247, 0.96);
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 -120px 0 120px rgba(251, 250, 247, 0.96);
+  backdrop-filter: blur(16px);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .site-header.scrolled,
 .site-header.solid {
-  background: rgba(251, 250, 247, 0.94);
-  color: var(--ink);
   border-bottom-color: var(--line);
-  backdrop-filter: blur(16px);
+  box-shadow: 0 -120px 0 120px rgba(251, 250, 247, 0.96), 0 10px 30px rgba(17, 17, 15, 0.08);
 }
 
 .brand {
@@ -142,7 +143,7 @@ button {
   gap: 2px;
   height: 44px;
   padding: 3px;
-  border: 1px solid rgba(255, 255, 255, 0.36);
+  border: 1px solid var(--line);
   border-radius: 8px;
 }
 
@@ -164,12 +165,6 @@ button {
 }
 
 .language-switch button.active {
-  background: var(--white);
-  color: var(--ink);
-}
-
-.site-header.scrolled .language-switch button.active,
-.site-header.solid .language-switch button.active {
   background: var(--ink);
   color: var(--white);
 }
@@ -191,7 +186,7 @@ button {
 .icon-link {
   padding: 0 14px;
   font-size: 13px;
-  border-color: rgba(255, 255, 255, 0.36);
+  border-color: var(--line);
 }
 
 .site-header.scrolled .icon-link,
@@ -215,7 +210,7 @@ button {
   padding: 0;
   background: transparent;
   color: currentColor;
-  border-color: rgba(255, 255, 255, 0.36);
+  border-color: var(--line);
 }
 
 .site-header.scrolled .icon-button,
@@ -382,6 +377,14 @@ button {
   min-width: 0;
 }
 
+.hero-booking label,
+.hero-booking input,
+.hero-booking select,
+.hero-booking button {
+  min-width: 0;
+  max-width: 100%;
+}
+
 .hero-select-shell {
   display: grid;
   grid-template-columns: 22px 1fr;
@@ -430,6 +433,8 @@ input,
 select,
 textarea {
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   min-height: 48px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -438,6 +443,19 @@ textarea {
   color: var(--ink);
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+}
+
+input[type="date"]::-webkit-date-and-time-value {
+  min-width: 0;
+  text-align: center;
 }
 
 textarea {
@@ -1390,7 +1408,7 @@ textarea:focus {
   inset: 0 0 0 auto;
   z-index: 80;
   display: grid;
-  grid-template-rows: auto 1fr auto auto;
+  grid-template-rows: auto 1fr auto;
   gap: 16px;
   width: min(440px, 100%);
   padding: 22px;
@@ -1428,7 +1446,15 @@ textarea:focus {
   font-size: 26px;
 }
 
+.cart-head-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 .cart-head .icon-button {
+  flex: 0 0 44px;
   color: var(--ink);
   border-color: var(--line);
 }
@@ -1510,19 +1536,24 @@ textarea:focus {
 }
 
 .cart-total {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 3px;
+  min-width: 76px;
+  text-align: right;
 }
 
 .cart-total span {
   color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .cart-total strong {
-  font-size: 26px;
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1;
 }
 
 .toast {
@@ -1598,13 +1629,39 @@ textarea:focus {
     display: none;
   }
 
+  .header-actions {
+    position: absolute;
+    top: 13px;
+    right: 54px;
+    display: block;
+    width: auto;
+  }
+
+  .header-actions .icon-link {
+    display: none;
+  }
+
   .language-switch {
+    position: fixed;
+    z-index: 45;
+    top: 13px;
+    right: 54px;
     height: 40px;
   }
 
   .language-switch button {
     min-width: 34px;
     height: 32px;
+  }
+
+  #cartButton {
+    position: fixed;
+    z-index: 45;
+    top: 13px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
   }
 
   .hero {
@@ -1636,7 +1693,15 @@ textarea:focus {
   .hero-booking input,
   .hero-booking .button,
   .hero-select-shell {
+    width: 100%;
+    max-width: 100%;
     min-height: 44px;
+  }
+
+  .hero-booking input[type="date"] {
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: center;
   }
 
   .hero-select-shell select {
@@ -1707,28 +1772,54 @@ textarea:focus {
 
   .header-actions {
     position: absolute;
-    top: 12px;
-    right: 18px;
-    display: grid;
-    grid-template-columns: auto 40px;
-    gap: 6px;
-    justify-content: end;
-    width: 124px;
+    top: 13px;
+    right: 54px;
+    display: block;
+    width: auto;
   }
 
   .header-actions .icon-link {
     display: none;
   }
 
-  .header-actions .icon-button {
-    width: 40px;
-    height: 40px;
-    min-height: 40px;
+  #cartButton {
+    position: fixed;
+    z-index: 45;
+    top: 13px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    min-height: 36px;
   }
 
-  .header-actions .icon-button span {
-    right: -4px;
-    top: -5px;
+  #cartButton span {
+    right: -3px;
+    top: -4px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    font-size: 10px;
+  }
+
+  #cartButton svg {
+    width: 16px;
+    height: 16px;
+    flex-basis: 16px;
+  }
+
+  .header-actions .language-switch {
+    position: fixed;
+    z-index: 45;
+    top: 13px;
+    right: 54px;
+    height: 36px;
+    padding: 2px;
+  }
+
+  .header-actions .language-switch button {
+    min-width: 32px;
+    height: 30px;
+    font-size: 11px;
   }
 
   .nav {
@@ -2009,5 +2100,52 @@ textarea:focus {
 
   .language-switch button {
     min-width: 31px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .site-header .header-actions {
+    position: absolute !important;
+    top: 13px;
+    right: 14px;
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    width: 76px !important;
+  }
+
+  .site-header .language-switch {
+    position: static !important;
+    order: 1;
+    height: 38px;
+  }
+
+  .site-header .language-switch button {
+    min-width: 32px;
+    height: 30px;
+    font-size: 11px;
+  }
+
+  #cartButton {
+    display: inline-flex !important;
+    position: fixed !important;
+    order: 2;
+    top: auto;
+    right: 16px;
+    bottom: 16px;
+    width: 46px;
+    height: 46px;
+    min-height: 46px;
+    background: var(--ink);
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.28);
+    box-shadow: 0 14px 34px rgba(17, 17, 15, 0.24);
+  }
+
+  #cartButton svg {
+    width: 16px;
+    height: 16px;
+    flex-basis: 16px;
   }
 }
