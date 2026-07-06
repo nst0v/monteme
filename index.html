@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MONTEME Beauty Atelier & Shop</title>
+    <meta
+      name="description"
+      content="Премиальный MVP сайта салона красоты и beauty shop MONTEME в Черногории: запись, анкета, магазин, checkout и pre-order."
+    >
+    <link rel="preconnect" href="https://static.tildacdn.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header" id="siteHeader">
+      <a class="brand" href="#top" aria-label="MONTEME home">
+        <span>MONTEME</span>
+        <small>atelier & shop</small>
+      </a>
+      <nav class="nav" aria-label="Главная навигация">
+        <a href="#rituals" data-i18n="navServices">Услуги</a>
+        <a href="#booking" data-i18n="navBooking">Запись</a>
+        <a href="#shop">Shop</a>
+        <a href="#partners" data-i18n="navPartners">Партнеры</a>
+        <a href="#checkout">Checkout</a>
+      </nav>
+      <div class="header-actions">
+        <div class="language-switch" aria-label="Language">
+          <button class="active" type="button" data-lang="ru">RU</button>
+          <button type="button" data-lang="sr">SR</button>
+        </div>
+        <a class="icon-link" href="tel:+38268458782" aria-label="Позвонить">
+          <i data-lucide="phone"></i>
+          <span>+382 68 458 782</span>
+        </a>
+        <button class="icon-button" id="cartButton" type="button" aria-label="Открыть корзину">
+          <i data-lucide="shopping-bag"></i>
+          <span id="cartCount">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="top" aria-label="MONTEME">
+        <div class="hero-media" role="img" aria-label="MONTEME premium beauty mood"></div>
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Beauty marketplace Montenegro</p>
+          <h1>MONTEME</h1>
+          <p class="hero-copy" data-i18n="heroCopy">
+            Премиальный beauty atelier и curated shop: запись к мастеру, персональная
+            анкета, подбор домашнего ухода и доставка по Черногории в одном спокойном
+            интерфейсе.
+          </p>
+          <div class="hero-badges" aria-label="Преимущества">
+            <span data-i18n="heroBadge1">Private booking</span>
+            <span data-i18n="heroBadge2">Curated care</span>
+            <span data-i18n="heroBadge3">Montenegro delivery</span>
+          </div>
+          <div class="hero-actions">
+            <a class="button button-dark" href="#booking">
+              <i data-lucide="calendar-check"></i>
+              <span data-i18n="heroBook">Записаться</span>
+            </a>
+            <a class="button button-light" href="#shop">
+              <i data-lucide="shopping-basket"></i>
+              <span data-i18n="heroShop">Собрать уход</span>
+            </a>
+          </div>
+        </div>
+        <form class="hero-booking" id="heroBooking">
+          <label class="hero-service-control">
+            <span data-i18n="heroServiceLabel">Услуга</span>
+            <div class="hero-select-shell">
+              <i data-lucide="sparkles"></i>
+              <select name="service" id="heroService">
+                <option value="cut-style">Женская стрижка и укладка</option>
+                <option value="color-toning">Окрашивание и тонирование</option>
+                <option value="hair-care">Глубокий уход для волос</option>
+                <option value="face-care">Уход для лица Sothys / IS Clinical</option>
+              </select>
+            </div>
+          </label>
+          <label>
+            <span data-i18n="heroDateLabel">Дата</span>
+            <input type="date" name="date">
+          </label>
+          <button class="button button-dark" type="submit">
+            <i data-lucide="arrow-right"></i>
+            <span data-i18n="heroSubmit">Подобрать время</span>
+          </button>
+        </form>
+      </section>
+
+      <section class="signal-strip" aria-label="MONTEME highlights">
+        <div>
+          <strong>Montenegro concierge</strong>
+          <span>Budva, Becici, Tivat, Kotor, Podgorica, Bar</span>
+        </div>
+        <div>
+          <strong>172+ beauty items</strong>
+          <span>реальные категории и цены из каталога Monteme</span>
+        </div>
+        <div>
+          <strong>Booking + shop</strong>
+          <span>анкета, корзина, checkout и pre-order в одном пути</span>
+        </div>
+      </section>
+
+      <section class="section section-dark" id="rituals">
+        <div class="section-heading">
+          <p class="eyebrow">Salon menu</p>
+          <h2 data-i18n="servicesTitle">Салонное меню на русском или любом другом языке языке</h2>
+          <p data-i18n="servicesText">
+            Вместо длинного прайса клиент видит понятные сценарии визита: волосы, цвет,
+            лицо, тело и быстрые детали образа. Так услуга ощущается дороже еще до записи.
+          </p>
+        </div>
+        <div class="ritual-filter" id="ritualFilters" aria-label="Service categories"></div>
+        <div class="ritual-grid" id="ritualGrid"></div>
+      </section>
+
+      <section class="section booking-section" id="booking">
+        <div class="booking-layout">
+          <div class="section-heading sticky-copy">
+            <p class="eyebrow">Private booking</p>
+            <h2 data-i18n="bookingTitle">Запись сразу собирает контекст клиента</h2>
+            <p data-i18n="bookingText">
+              Анкета уточняет город, канал связи, цель визита и важные детали. Менеджер
+              получает не просто имя и телефон, а готовый запрос для премиального сервиса.
+            </p>
+            <div class="booking-aside-points" aria-label="Booking benefits">
+              <span>01 · private client card</span>
+              <span>02 · manager confirmation</span>
+              <span>03 · aftercare recommendation</span>
+            </div>
+          </div>
+
+          <form class="booking-form" id="bookingForm">
+            <div class="booking-console-top">
+              <div class="booking-progress" aria-label="Booking steps">
+                <span class="active">1</span>
+                <span>2</span>
+                <span>3</span>
+              </div>
+              <div class="booking-summary" id="bookingSummary">
+                <span>Выберите услугу</span>
+                <strong>Женская стрижка и укладка</strong>
+                <small>75 мин · от €45</small>
+              </div>
+            </div>
+            <div class="form-row">
+              <label>
+                <span>Имя</span>
+                <input type="text" name="name" placeholder="Ваше имя" required>
+              </label>
+              <label>
+                <span>Телефон</span>
+                <input type="tel" name="phone" placeholder="+382" required>
+              </label>
+            </div>
+            <div class="form-row">
+              <label>
+                <span>Канал связи</span>
+                <select name="messenger">
+                  <option>WhatsApp</option>
+                  <option>Telegram</option>
+                  <option>Phone call</option>
+                </select>
+              </label>
+              <label>
+                <span>Город</span>
+                <select name="city">
+                  <option>Budva</option>
+                  <option>Becici</option>
+                  <option>Tivat</option>
+                  <option>Kotor</option>
+                  <option>Podgorica</option>
+                  <option>Bar</option>
+                </select>
+              </label>
+            </div>
+            <div class="booking-service-filter" id="bookingServiceFilters" aria-label="Booking service categories"></div>
+            <div class="service-picker" id="servicePicker" aria-label="Выбор услуги"></div>
+            <div class="time-grid" id="timeGrid" aria-label="Выбор времени">
+              <button type="button">10:30</button>
+              <button type="button">12:00</button>
+              <button type="button">14:30</button>
+              <button type="button">17:00</button>
+            </div>
+            <label>
+              <span>Комментарий</span>
+              <textarea name="note" placeholder="Что важно знать мастеру: волосы, кожа, аллергии, желаемый результат"></textarea>
+            </label>
+            <button class="button button-dark full" type="submit">
+              <i data-lucide="send"></i>
+              <span>Отправить заявку</span>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section class="section shop-section" id="shop">
+        <div class="section-heading">
+          <p class="eyebrow">MONTEME shop</p>
+          <h2 data-i18n="shopTitle">Shop продолжает эффект после визита</h2>
+          <p data-i18n="shopText">
+            Витрина не живет отдельно от салона: после выбора ритуала клиент сразу может
+            собрать домашний уход. Товары, бренды и цены взяты из текущего каталога Monteme.
+          </p>
+        </div>
+        <div class="shop-toolbar" id="shopFilters" aria-label="Фильтры магазина">
+          <button class="active" type="button" data-filter="all">All</button>
+          <button type="button" data-filter="hair">Hair</button>
+          <button type="button" data-filter="face">Face</button>
+          <button type="button" data-filter="body">Body</button>
+          <button type="button" data-filter="perfume">Perfume</button>
+          <button type="button" data-filter="jewelry">Jewelry</button>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+      </section>
+
+      <section class="section experience-section">
+        <div class="experience-copy">
+          <p class="eyebrow">Client journey</p>
+          <h2>Один путь: выбрать, прийти, продолжить уход</h2>
+        </div>
+        <div class="journey">
+          <article>
+            <i data-lucide="sparkles"></i>
+            <h3>Before visit</h3>
+            <p>Анкета фиксирует ожидания, привычки ухода и удобный канал связи.</p>
+          </article>
+          <article>
+            <i data-lucide="scissors"></i>
+            <h3>In salon</h3>
+            <p>Мастер видит контекст и предлагает ритуал под состояние волос, кожи или тела.</p>
+          </article>
+          <article>
+            <i data-lucide="package-check"></i>
+            <h3>Aftercare</h3>
+            <p>Корзина превращает рекомендацию мастера в заказ, pre-order или доставку.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section partner-section" id="partners">
+        <div class="partner-layout">
+          <div class="partner-copy">
+            <p class="eyebrow">Selected partners</p>
+            <h2 data-i18n="partnersTitle">Бренды, которые усиливают доверие к салону</h2>
+            <p data-i18n="partnersText">
+              Вместо обычной полосы логотипов блок работает как витрина статуса: клиент
+              сразу видит, что Monteme собирает профессиональные и нишевые бренды для
+              салонного результата и домашнего ухода.
+            </p>
+            <div class="partner-note">
+              <span>Для коллабораций</span>
+              <strong>Beauty brands, salons, hotels, private concierge</strong>
+            </div>
+          </div>
+
+          <div class="partner-wall" aria-label="Партнеры Monteme">
+            <div class="partner-logo logo-large">
+              <img src="https://static.tildacdn.com/tild6438-3934-4632-b936-333733643131/davines.svg" alt="Davines">
+            </div>
+            <div class="partner-logo">
+              <img src="https://static.tildacdn.com/tild3965-6132-4136-b336-363165643762/Redken_logo.png" alt="Redken">
+            </div>
+            <div class="partner-logo">
+              <img src="https://static.tildacdn.com/tild3539-3963-4463-a365-306139626332/627a7d82670be2f51ce9.png" alt="Kevin Murphy">
+            </div>
+            <div class="partner-logo logo-tall">
+              <img src="https://static.tildacdn.com/tild6339-6133-4639-b862-303838323565/1_6.png" alt="Kerastase">
+            </div>
+            <div class="partner-logo">
+              <img src="https://static.tildacdn.com/tild3061-3334-4164-a261-363337396433/untitled-1_8.png" alt="Sothys">
+            </div>
+            <div class="partner-logo">
+              <span>La Sultane de Saba</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reference-form-block">
+          <div class="reference-form-copy">
+            <p class="eyebrow">Contact form</p>
+            <h3 data-i18n="partnerFormTitle">Свяжитесь с нами по любым вопросам</h3>
+            <p data-i18n="partnerFormText">
+              Форма из референса сохранена по смыслу: имя, email и сообщение. В MVP она
+              демонстрирует заявки на сотрудничество, отзывы, закупки и персональные запросы.
+            </p>
+          </div>
+          <form class="reference-form" id="partnerForm">
+            <div class="form-row">
+              <label>
+                <span data-i18n="partnerName">Ваше имя</span>
+                <input type="text" name="partnerName" placeholder="Ваше имя" data-i18n-placeholder="partnerNamePlaceholder" required>
+              </label>
+              <label>
+                <span data-i18n="partnerEmail">Ваш E-mail</span>
+                <input type="email" name="partnerEmail" placeholder="hello@email.com" required>
+              </label>
+            </div>
+            <label>
+              <span data-i18n="partnerMessage">Текст</span>
+              <textarea name="partnerMessage" placeholder="Расскажите, с чем хотите обратиться" data-i18n-placeholder="partnerMessagePlaceholder" required></textarea>
+            </label>
+            <button class="button button-dark full" type="submit">
+              <i data-lucide="mail-check"></i>
+              <span data-i18n="partnerSubmit">Отправить</span>
+            </button>
+            <p class="fineprint dark">
+              Нажимая на кнопку, вы даете согласие на обработку персональных данных и
+              соглашаетесь с политикой конфиденциальности.
+            </p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section checkout-section" id="checkout">
+        <div class="checkout-panel">
+          <div class="section-heading">
+            <p class="eyebrow">Checkout</p>
+            <h2 data-i18n="checkoutTitle">Checkout сохраняет ощущение сервиса</h2>
+            <p data-i18n="checkoutText">
+              Форма выглядит легче, чем обычная корзина: имя, email, телефон, город доставки,
+              промокод и понятное обещание связи от менеджера после оформления.
+            </p>
+          </div>
+          <form class="checkout-form" id="checkoutForm">
+            <div class="form-row">
+              <label>
+                <span>Your Name</span>
+                <input type="text" name="checkoutName" placeholder="Ваше имя" required>
+              </label>
+              <label>
+                <span>Your Email</span>
+                <input type="email" name="checkoutEmail" placeholder="email@example.com" required>
+              </label>
+            </div>
+            <div class="form-row">
+              <label>
+                <span>Your Phone</span>
+                <input type="tel" name="checkoutPhone" placeholder="WhatsApp / Telegram" required>
+              </label>
+              <label>
+                <span>Delivery</span>
+                <select name="delivery">
+                  <option>Becici</option>
+                  <option>Budva</option>
+                  <option>Tivat</option>
+                  <option>Kotor</option>
+                  <option>Podgorica</option>
+                  <option>Bar</option>
+                </select>
+              </label>
+            </div>
+            <div class="promo-row">
+              <label>
+                <span>Промокод</span>
+                <input type="text" id="promoInput" placeholder="Введите промокод">
+              </label>
+              <button class="button button-light" id="promoButton" type="button">
+                <i data-lucide="badge-percent"></i>
+                <span>Активировать</span>
+              </button>
+            </div>
+            <button class="button button-dark full" type="submit">
+              <i data-lucide="check-circle-2"></i>
+              <span>Checkout</span>
+            </button>
+            <p class="fineprint">
+              После оформления заказа менеджер свяжется с вами. Pre-orders are made with a 50%
+              advance payment.
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        <strong>MONTEME</strong>
+        <span>We work for your joy and happiness.</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/monteme.me" target="_blank" rel="noreferrer">Instagram</a>
+        <a href="tel:+38268458782">+382 68 458 782</a>
+      </div>
+    </footer>
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Корзина">
+      <div class="cart-head">
+        <div>
+          <span>Selected care</span>
+          <strong>Корзина</strong>
+        </div>
+        <button class="icon-button" id="closeCart" type="button" aria-label="Закрыть корзину">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-empty" id="cartEmpty">
+        <i data-lucide="shopping-bag"></i>
+        <p>Добавьте уход из магазина.</p>
+      </div>
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cartTotal">€0</strong>
+      </div>
+      <a class="button button-dark full" href="#checkout" id="cartCheckout">
+        <i data-lucide="credit-card"></i>
+        <span>Перейти к checkout</span>
+      </a>
+    </aside>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
