@@ -29,14 +29,14 @@
         <a href="#checkout">Checkout</a>
       </nav>
       <div class="header-actions">
-        <div class="language-switch" aria-label="Language">
-          <button class="active" type="button" data-lang="ru">RU</button>
-          <button type="button" data-lang="sr">SR</button>
-        </div>
         <a class="icon-link" href="tel:+38268458782" aria-label="Позвонить">
           <i data-lucide="phone"></i>
           <span>+382 68 458 782</span>
         </a>
+        <div class="language-switch" aria-label="Language">
+          <button class="active" type="button" data-lang="ru">RU</button>
+          <button type="button" data-lang="sr">SR</button>
+        </div>
         <button class="icon-button" id="cartButton" type="button" aria-label="Открыть корзину">
           <i data-lucide="shopping-bag"></i>
           <span id="cartCount">0</span>
@@ -401,20 +401,18 @@
           <span>Selected care</span>
           <strong>Корзина</strong>
         </div>
-        <div class="cart-head-actions">
-          <div class="cart-total">
-            <span>Total</span>
-            <strong id="cartTotal">€0</strong>
-          </div>
-          <button class="icon-button" id="closeCart" type="button" aria-label="Закрыть корзину">
-            <i data-lucide="x"></i>
-          </button>
-        </div>
+        <button class="icon-button" id="closeCart" type="button" aria-label="Закрыть корзину">
+          <i data-lucide="x"></i>
+        </button>
       </div>
       <div class="cart-items" id="cartItems"></div>
       <div class="cart-empty" id="cartEmpty">
         <i data-lucide="shopping-bag"></i>
         <p>Добавьте уход из магазина.</p>
+      </div>
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cartTotal">€0</strong>
       </div>
       <a class="button button-dark full" href="#checkout" id="cartCheckout">
         <i data-lucide="credit-card"></i>
